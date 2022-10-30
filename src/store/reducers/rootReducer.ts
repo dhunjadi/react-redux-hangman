@@ -1,10 +1,13 @@
 import {combineReducers} from 'redux';
-import {playerReducer, playerReducerState} from './playerReducer';
+import {gameReducer, IGameReducerState} from './gameReducer';
+import {playerReducer, IPlayerReducerState} from './playerReducer';
 
 export interface StoreState {
-    playerReducer: playerReducerState;
+    playerReducer: IPlayerReducerState;
+    gameReducer: IGameReducerState;
 }
 
 export const rootReducer = combineReducers({
     playerReducer,
+    gameReducer,
 });

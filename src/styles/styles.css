@@ -1,0 +1,39 @@
+/* COLORS */
+/* BREAKPOINTS */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #eaebed;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.p-namePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 2rem auto;
+  padding: 0 10%;
+  font-size: 1.6rem;
+  height: 100vh;
+}
+
+.p-playPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 2rem auto;
+  padding: 0 10%;
+  font-size: 1.6rem;
+  height: 100vh;
+}

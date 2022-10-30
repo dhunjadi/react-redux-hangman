@@ -1,0 +1,11 @@
+@mixin pageLayout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto 2rem auto;
+    padding: 0 10%;
+
+    font-size: 1.6rem;
+}
