@@ -3,16 +3,27 @@
     margin-top: 2rem;
     gap: 1rem;
 
-    button {
+    &__key {
         width: 100%;
         padding: 1rem;
         border: 0.2rem solid $color-black;
+        background-color: $color-white;
         border-radius: 0.4rem;
         outline: none;
         font-size: 1.6rem;
         font-weight: 700;
         cursor: pointer;
         text-transform: uppercase;
+
+        &--correct {
+            background-color: $color-green;
+            pointer-events: none;
+        }
+
+        &--incorrect {
+            background-color: $color-red;
+            pointer-events: none;
+        }
 
         &:hover {
             background-color: $color-black;

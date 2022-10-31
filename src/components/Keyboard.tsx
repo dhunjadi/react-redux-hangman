@@ -2,6 +2,7 @@ import React, {ReactElement} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {addCorrectLetterAction, addIncorrectLetterAction} from '../store/actions/gameActions';
 import {StoreState} from '../store/reducers/rootReducer';
+import {v4 as uuidv4} from 'uuid';
 
 const Keyboard = (): ReactElement => {
     const {puzzle, correctLetters, incorrectLetters} = useSelector((state: StoreState) => state.gameReducer);
@@ -47,10 +48,22 @@ const Keyboard = (): ReactElement => {
         return false;
     };
 
+    const getModifier = (key: string): string | undefined => {
+        if (correctLetters.includes(key)) return 'c-keyboard__key--correct';
+        if (incorrectLetters.includes(key)) return 'c-keyboard__key--incorrect';
+        return;
+    };
+
     return (
         <div className="c-keyboard">
             {keys.map((key) => (
-                <button key={key} value={key} onClick={handleButtonClick} disabled={isDisabled(key)}>
+                <button
+                    className={`c-keyboard__key ${getModifier(key)}`}
+                    key={uuidv4()}
+                    value={key}
+                    onClick={handleButtonClick}
+                    disabled={isDisabled(key)}
+                >
                     {key}
                 </button>
             ))}

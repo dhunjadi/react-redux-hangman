@@ -1,0 +1,21 @@
+.c-puzzle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    &__letter {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+
+        border-bottom: 3px solid black;
+        margin: 0 0.3rem;
+
+        &--noUnderscore {
+            border: none;
+        }
+    }
+}
