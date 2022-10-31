@@ -4,7 +4,11 @@ import {addCorrectLetterAction, addIncorrectLetterAction} from '../store/actions
 import {StoreState} from '../store/reducers/rootReducer';
 import {v4 as uuidv4} from 'uuid';
 
-const Keyboard = (): ReactElement => {
+interface KeyboardProps {
+    gameOver: boolean;
+}
+
+const Keyboard = ({gameOver}: KeyboardProps): ReactElement => {
     const {puzzle, correctLetters, incorrectLetters} = useSelector((state: StoreState) => state.gameReducer);
     const dispatch = useDispatch();
 
@@ -43,6 +47,7 @@ const Keyboard = (): ReactElement => {
     };
 
     const isDisabled = (letter: string): boolean => {
+        if (gameOver) return true;
         if (correctLetters.includes(letter) || correctLetters.includes(letter.toLocaleUpperCase())) return true;
         if (incorrectLetters.includes(letter) || incorrectLetters.includes(letter.toLocaleUpperCase())) return true;
         return false;
