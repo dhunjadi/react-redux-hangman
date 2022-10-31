@@ -1,4 +1,11 @@
 .p-playPage {
     @include pageLayout;
     height: 100vh;
+
+    &__puzzle {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

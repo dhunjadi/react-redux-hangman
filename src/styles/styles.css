@@ -37,3 +37,30 @@ html {
   font-size: 1.6rem;
   height: 100vh;
 }
+.p-playPage__puzzle {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c-keyboard {
+  display: flex;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+.c-keyboard button {
+  width: 100%;
+  padding: 1rem;
+  border: 0.2rem solid #121212;
+  border-radius: 0.4rem;
+  outline: none;
+  font-size: 1.6rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.c-keyboard button:hover {
+  background-color: #121212;
+  color: #eaebed;
+}

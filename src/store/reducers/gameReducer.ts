@@ -1,12 +1,16 @@
 import {AnyAction} from 'redux';
-import {SET_PUZZLE} from '../actions/gameActions';
+import {ADD_CORRECT_LETTER, ADD_INCORRECT_LETTER, RESET_GAME, SET_PUZZLE} from '../actions/gameActions';
 
 export interface IGameReducerState {
     puzzle: string;
+    correctLetters: string[];
+    incorrectLetters: string[];
 }
 
 const initialState = {
     puzzle: '',
+    correctLetters: [],
+    incorrectLetters: [],
 };
 
 export const gameReducer = (state: IGameReducerState = initialState, action: AnyAction): IGameReducerState => {
@@ -16,6 +20,19 @@ export const gameReducer = (state: IGameReducerState = initialState, action: Any
                 ...state,
                 puzzle: action.puzzle,
             };
+        case ADD_CORRECT_LETTER:
+            return {
+                ...state,
+                correctLetters: [...state.correctLetters, action.letter],
+            };
+        case ADD_INCORRECT_LETTER:
+            return {
+                ...state,
+                incorrectLetters: [...state.incorrectLetters, action.letter],
+            };
+        case RESET_GAME:
+            return initialState;
+
         default:
             return state;
     }

@@ -1,0 +1,22 @@
+.c-keyboard {
+    display: flex;
+    margin-top: 2rem;
+    gap: 1rem;
+
+    button {
+        width: 100%;
+        padding: 1rem;
+        border: 0.2rem solid $color-black;
+        border-radius: 0.4rem;
+        outline: none;
+        font-size: 1.6rem;
+        font-weight: 700;
+        cursor: pointer;
+        text-transform: uppercase;
+
+        &:hover {
+            background-color: $color-black;
+            color: $color-white;
+        }
+    }
+}
