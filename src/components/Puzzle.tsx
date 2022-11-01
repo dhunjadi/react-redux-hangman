@@ -6,6 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 
 const Puzzle = (): ReactElement => {
     const {puzzle, correctLetters} = useSelector((state: StoreState) => state.gameReducer);
+    const {content} = puzzle;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -16,7 +17,7 @@ const Puzzle = (): ReactElement => {
 
     return (
         <div className="c-puzzle">
-            {puzzle.split('').map((letter) => {
+            {content.split('').map((letter) => {
                 for (const char of letter) {
                     if (char === ' ') {
                         return (

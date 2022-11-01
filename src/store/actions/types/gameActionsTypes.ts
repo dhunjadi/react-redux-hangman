@@ -1,4 +1,15 @@
-import {ADD_CORRECT_LETTER, ADD_INCORRECT_LETTER, FETCH_PUZZLE, RESET_GAME, SET_PUZZLE} from '../gameActions';
+import {IPuzzle, IScoreData} from '../../../service/game';
+import {
+    ADD_CORRECT_LETTER,
+    ADD_INCORRECT_LETTER,
+    FETCH_PUZZLE,
+    RESET_GAME,
+    SEND_SCORE_DATA,
+    SET_LOST,
+    SET_PUZZLE,
+    SET_TIME,
+    SET_WIN,
+} from '../gameActions';
 
 export interface IFetchPuzzleAction {
     type: typeof FETCH_PUZZLE;
@@ -6,7 +17,7 @@ export interface IFetchPuzzleAction {
 
 export interface ISetPuzzleAction {
     type: typeof SET_PUZZLE;
-    puzzle: string;
+    puzzle: IPuzzle;
 }
 
 export interface IAddCorrectLetterAction {
@@ -21,4 +32,22 @@ export interface IAddIncorrectLetterAction {
 
 export interface IResetGameAction {
     type: typeof RESET_GAME;
+}
+
+export interface ISetWinAction {
+    type: typeof SET_WIN;
+}
+
+export interface ISetLostAction {
+    type: typeof SET_LOST;
+}
+
+export interface ISetTimeAction {
+    type: typeof SET_TIME;
+    time: number;
+}
+
+export interface ISendScoreDataAction {
+    type: typeof SEND_SCORE_DATA;
+    scoreData: IScoreData;
 }
