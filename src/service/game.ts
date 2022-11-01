@@ -21,6 +21,16 @@ export interface IScoreData {
     duration: number;
 }
 
+export interface IHighscore {
+    id: number;
+    quoteId: string;
+    length: number;
+    userName: string;
+    uniqueCharacters: number;
+    errors: number;
+    duration: number;
+}
+
 export const fetchWordToGuess = (): Promise<IPuzzle> => {
     return axios
         .get('http://api.quotable.io/random')
@@ -32,9 +42,28 @@ export const fetchWordToGuess = (): Promise<IPuzzle> => {
         });
 };
 
-export const sendScoreData = (): Promise<IScoreData> => {
+export const sendScoreData = ({quoteId, length, uniqueCharacters, userName, errors, duration}: IScoreData): any => {
     return axios
-        .post('https://my-json-server.typicode.com/Serapion-ZG/hangman-ts/highscores')
+        .post(
+            'https://my-json-server.typicode.com/Serapion-ZG/hangman-ts/highscores',
+            {quoteId, length, uniqueCharacters, userName, errors, duration},
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        )
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
+
+export const fetchHighscores = (): Promise<any[]> => {
+    return axios
+        .get('https://my-json-server.typicode.com/Serapion-ZG/hangman-ts/highscores')
         .then((response) => {
             return response.data;
         })

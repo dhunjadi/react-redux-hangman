@@ -1,6 +1,15 @@
 import {AnyAction} from 'redux';
-import {IPuzzle} from '../../service/game';
-import {ADD_CORRECT_LETTER, ADD_INCORRECT_LETTER, RESET_GAME, SET_LOST, SET_PUZZLE, SET_TIME, SET_WIN} from '../actions/gameActions';
+import {IHighscore, IPuzzle} from '../../service/game';
+import {
+    ADD_CORRECT_LETTER,
+    ADD_INCORRECT_LETTER,
+    RESET_GAME,
+    SET_HIGHSCORES,
+    SET_LOST,
+    SET_PUZZLE,
+    SET_TIME,
+    SET_WIN,
+} from '../actions/gameActions';
 
 export interface IGameReducerState {
     puzzle: IPuzzle;
@@ -9,6 +18,7 @@ export interface IGameReducerState {
     win: boolean;
     lost: boolean;
     time: number;
+    highscores: IHighscore[];
 }
 
 const initialState = {
@@ -18,6 +28,7 @@ const initialState = {
     win: false,
     lost: false,
     time: 0,
+    highscores: [],
 };
 
 export const gameReducer = (state: IGameReducerState = initialState, action: AnyAction): IGameReducerState => {
@@ -51,6 +62,11 @@ export const gameReducer = (state: IGameReducerState = initialState, action: Any
             return {
                 ...state,
                 time: action.time,
+            };
+        case SET_HIGHSCORES:
+            return {
+                ...state,
+                highscores: action.highscores,
             };
         case RESET_GAME:
             return initialState;

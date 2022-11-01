@@ -1,14 +1,16 @@
-import {IPuzzle, IScoreData} from '../../service/game';
+import {IHighscore, IPuzzle, IScoreData} from '../../service/game';
 import {
     IAddCorrectLetterAction,
     IAddIncorrectLetterAction,
     IFetchPuzzleAction,
+    ISetHighscoreAction,
     IResetGameAction,
     ISendScoreDataAction,
     ISetLostAction,
     ISetPuzzleAction,
     ISetTimeAction,
     ISetWinAction,
+    IFetchHighscoreAction,
 } from './types/gameActionsTypes';
 
 export const FETCH_PUZZLE = 'FETCH_PUZZLE';
@@ -20,6 +22,8 @@ export const SET_WIN = 'SET_WIN';
 export const SET_LOST = 'SET_LOST';
 export const SET_TIME = 'SET_TIME';
 export const SEND_SCORE_DATA = 'SEND_SCORE_DATA';
+export const FETCH_HIGHSCORES = 'FETCH_HIGHSCORES';
+export const SET_HIGHSCORES = 'SET_HIGHSCORES';
 
 export const fetchPuzzleAction = (): IFetchPuzzleAction => ({
     type: FETCH_PUZZLE,
@@ -60,4 +64,13 @@ export const setTimeAction = (time: number): ISetTimeAction => ({
 export const sendScoreDataAction = (scoreData: IScoreData): ISendScoreDataAction => ({
     type: SEND_SCORE_DATA,
     scoreData,
+});
+
+export const fetcgHighscoresAction = (): IFetchHighscoreAction => ({
+    type: FETCH_HIGHSCORES,
+});
+
+export const setHighscoresAction = (highscores: IHighscore[]): ISetHighscoreAction => ({
+    type: SET_HIGHSCORES,
+    highscores,
 });

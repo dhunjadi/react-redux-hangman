@@ -1,14 +1,16 @@
-import {IPuzzle, IScoreData} from '../../../service/game';
+import {IHighscore, IPuzzle, IScoreData} from '../../../service/game';
 import {
     ADD_CORRECT_LETTER,
     ADD_INCORRECT_LETTER,
     FETCH_PUZZLE,
+    SET_HIGHSCORES,
     RESET_GAME,
     SEND_SCORE_DATA,
     SET_LOST,
     SET_PUZZLE,
     SET_TIME,
     SET_WIN,
+    FETCH_HIGHSCORES,
 } from '../gameActions';
 
 export interface IFetchPuzzleAction {
@@ -50,4 +52,13 @@ export interface ISetTimeAction {
 export interface ISendScoreDataAction {
     type: typeof SEND_SCORE_DATA;
     scoreData: IScoreData;
+}
+
+export interface IFetchHighscoreAction {
+    type: typeof FETCH_HIGHSCORES;
+}
+
+export interface ISetHighscoreAction {
+    type: typeof SET_HIGHSCORES;
+    highscores: IHighscore[];
 }
