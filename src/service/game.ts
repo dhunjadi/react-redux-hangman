@@ -42,7 +42,7 @@ export const fetchWordToGuess = (): Promise<IPuzzle> => {
         });
 };
 
-export const sendScoreData = ({quoteId, length, uniqueCharacters, userName, errors, duration}: IScoreData): any => {
+export const sendScoreData = ({quoteId, length, uniqueCharacters, userName, errors, duration}: IScoreData): Promise<IScoreData> => {
     return axios
         .post(
             'https://my-json-server.typicode.com/Serapion-ZG/hangman-ts/highscores',
@@ -61,7 +61,7 @@ export const sendScoreData = ({quoteId, length, uniqueCharacters, userName, erro
         });
 };
 
-export const fetchHighscores = (): Promise<any[]> => {
+export const fetchHighscores = (): Promise<IHighscore[]> => {
     return axios
         .get('https://my-json-server.typicode.com/Serapion-ZG/hangman-ts/highscores')
         .then((response) => {

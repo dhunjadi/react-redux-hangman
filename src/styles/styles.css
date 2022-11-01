@@ -16,6 +16,31 @@ html {
   font-size: 62.5%;
 }
 
+.button {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  outline: none;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 1rem 0;
+  transition: all 0.3s ease-out;
+  background-color: white;
+  color: #121212;
+}
+.button.is-disabled {
+  background-color: #eaebed;
+  pointer-events: none;
+}
+.button:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 0.2rem 1rem #121212;
+}
+.button:active {
+  transform: translateY(0.1rem);
+  box-shadow: 0 0.1rem 0.5rem #121212;
+}
+
 .p-namePage {
   display: flex;
   flex-direction: column;
@@ -25,6 +50,29 @@ html {
   padding: 0 10%;
   font-size: 1.6rem;
   height: 100vh;
+}
+.p-namePage__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.p-namePage__form_input {
+  width: 100%;
+  height: 100%;
+  border: 0.2rem solid #eaebed;
+  border-radius: 999px;
+  background-color: white;
+  margin: 1rem;
+  color: #121212;
+  padding: 1.5rem 3rem;
+}
+.p-namePage__form_input::placeholder {
+  color: #121212;
+}
+.p-namePage__form_input:focus {
+  outline: none;
+  border: 0.2rem solid #121212;
 }
 
 .p-playPage {
@@ -36,35 +84,44 @@ html {
   padding: 0 10%;
   font-size: 1.6rem;
   height: 100vh;
-  justify-content: space-around;
 }
-.p-playPage__button {
+.p-playPage__content {
+  position: relative;
   width: 100%;
-  border: 0.2rem solid #121212;
-  border-radius: 1rem;
-  outline: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.6rem;
+  text-align: center;
+}
+.p-playPage__content_header {
+  width: 100%;
+  display: flex;
+  align-items: center;
   font-weight: 700;
-  cursor: pointer;
-  padding: 1rem 0;
-  margin-top: 2rem;
+  justify-content: space-evenly;
 }
 
 .c-keyboard {
-  display: flex;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 2rem 0.5rem;
   margin-top: 2rem;
-  gap: 1rem;
 }
 .c-keyboard__key {
   width: 100%;
-  padding: 1rem;
   border: 0.2rem solid #121212;
-  background-color: #eaebed;
+  background-color: white;
   border-radius: 0.4rem;
   outline: none;
   font-size: 1.6rem;
   font-weight: 700;
   cursor: pointer;
   text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
 }
 .c-keyboard__key--correct {
   background-color: #32cd32;
@@ -82,20 +139,15 @@ html {
 .c-puzzle {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  white-space: nowrap;
+  gap: 0.2rem;
 }
 .c-puzzle__letter {
-  width: 100%;
   display: flex;
   justify-content: center;
-  font-size: 2rem;
-  font-weight: 700;
   text-transform: uppercase;
-  border-bottom: 3px solid black;
-  margin: 0 0.3rem;
-}
-.c-puzzle__letter--noUnderscore {
-  border: none;
 }
 
 .c-figure {

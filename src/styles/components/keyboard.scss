@@ -1,19 +1,21 @@
 .c-keyboard {
-    display: flex;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 2rem 0.5rem;
     margin-top: 2rem;
-    gap: 1rem;
 
     &__key {
         width: 100%;
-        padding: 1rem;
         border: 0.2rem solid $color-black;
-        background-color: $color-white;
+        background-color: white;
         border-radius: 0.4rem;
         outline: none;
         font-size: 1.6rem;
         font-weight: 700;
         cursor: pointer;
         text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
 
         &--correct {
             background-color: $color-green;

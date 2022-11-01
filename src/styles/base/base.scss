@@ -13,3 +13,33 @@ body {
 html {
     font-size: 62.5%;
 }
+
+.button {
+    width: 100%;
+    border: none;
+    border-radius: 999px;
+    outline: none;
+    font-weight: 700;
+    cursor: pointer;
+
+    padding: 1rem 0;
+    transition: all 0.3s ease-out;
+
+    background-color: white;
+    color: $color-black;
+
+    &.is-disabled {
+        background-color: $color-white;
+        pointer-events: none;
+    }
+
+    &:hover {
+        transform: translateY(-0.3rem);
+        box-shadow: 0 0.2rem 1rem $color-black;
+    }
+
+    &:active {
+        transform: translateY(0.1rem);
+        box-shadow: 0 0.1rem 0.5rem $color-black;
+    }
+}

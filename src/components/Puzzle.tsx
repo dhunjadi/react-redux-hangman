@@ -1,6 +1,6 @@
 import React, {ReactElement, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchPuzzleAction} from '../store/actions/gameActions';
+import {fetchPuzzleAction, resetGameAction} from '../store/actions/gameActions';
 import {StoreState} from '../store/reducers/rootReducer';
 import {v4 as uuidv4} from 'uuid';
 
@@ -10,6 +10,7 @@ const Puzzle = (): ReactElement => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(resetGameAction());
         dispatch(fetchPuzzleAction());
     }, [dispatch]);
 
@@ -29,7 +30,7 @@ const Puzzle = (): ReactElement => {
                     if (char.match(regex)) {
                         return (
                             <div key={uuidv4()} className="c-puzzle__letter">
-                                {correctLetters.includes(letter.toLocaleLowerCase()) ? letter : ''}
+                                {correctLetters.includes(letter.toLocaleLowerCase()) ? letter : '_'}
                             </div>
                         );
                     } else if (!char.match(regex)) {
