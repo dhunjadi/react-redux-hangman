@@ -1,5 +1,6 @@
 import React, {ReactElement, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import Figure from '../components/Figure';
 import Keyboard from '../components/Keyboard';
 import Puzzle from '../components/Puzzle';
 import {fetchPuzzleAction, resetGameAction} from '../store/actions/gameActions';
@@ -30,6 +31,7 @@ const PlayPage = (): ReactElement => {
                     <h1>HANGMAN</h1> <p> </p>
                 </header>
                 WRONG: {incorrectLetters.length}/6
+                <Figure />
                 <Puzzle />
                 <Keyboard gameOver={gameOver} />
                 <button className="p-playPage__button" onClick={handleReset}>

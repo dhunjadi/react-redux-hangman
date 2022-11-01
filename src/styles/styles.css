@@ -97,3 +97,10 @@ html {
 .c-puzzle__letter--noUnderscore {
   border: none;
 }
+
+.c-figure {
+  fill: transparent;
+  stroke: #121212;
+  stroke-width: 4px;
+  stroke-linecap: round;
+}
