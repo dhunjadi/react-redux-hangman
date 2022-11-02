@@ -48,7 +48,10 @@ const PlayPage = (): ReactElement => {
         <div className="p-playPage">
             <div className="p-playPage__content">
                 <header className="p-playPage__content_header">
-                    <span onClick={() => navigate('/')}>&larr;</span> <h1>HANGMAN</h1> <span>&#160;</span>
+                    <button className="button" onClick={() => navigate('/')}>
+                        &larr;
+                    </button>{' '}
+                    <h1>HANGMAN</h1>
                 </header>
                 {lost && <span>GAME OVER!</span>}
                 {win && (

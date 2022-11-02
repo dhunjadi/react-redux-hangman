@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {addCorrectLetterAction, addIncorrectLetterAction} from '../store/actions/gameActions';
 import {StoreState} from '../store/reducers/rootReducer';
@@ -37,6 +37,23 @@ const Keyboard = (): ReactElement => {
         'y',
         'z',
     ];
+
+    useEffect(() => {
+        const handleKeydown = (e: KeyboardEvent): void => {
+            if (!keys.includes(e.key)) return;
+            if (win || lost) return;
+
+            if (content.includes(e.key.toLowerCase()) && !correctLetters.includes(e.key))
+                dispatch(addCorrectLetterAction(e.key.toLowerCase()));
+
+            if (!content.includes(e.key.toLowerCase()) && !incorrectLetters.includes(e.key))
+                dispatch(addIncorrectLetterAction(e.key.toLowerCase()));
+        };
+
+        window.addEventListener('keydown', handleKeydown);
+
+        return () => window.removeEventListener('keydown', handleKeydown);
+    }, [correctLetters, incorrectLetters, win, lost]);
 
     const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
         const {value} = e.currentTarget;

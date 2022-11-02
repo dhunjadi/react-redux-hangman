@@ -16,7 +16,7 @@ html {
 
 .button {
     width: 100%;
-    border: none;
+    border: 0.3rem solid $color-white;
     border-radius: 999px;
     outline: none;
     font-weight: 700;
@@ -31,15 +31,16 @@ html {
     &.is-disabled {
         background-color: $color-white;
         pointer-events: none;
+        border: 0.3rem solid white;
     }
 
     &:hover {
         transform: translateY(-0.3rem);
-        box-shadow: 0 0.2rem 1rem $color-black;
+        box-shadow: 0 0.2rem 0.5rem $color-black;
     }
 
     &:active {
         transform: translateY(0.1rem);
-        box-shadow: 0 0.1rem 0.5rem $color-black;
+        box-shadow: 0 0.1rem 0.25rem $color-black;
     }
 }

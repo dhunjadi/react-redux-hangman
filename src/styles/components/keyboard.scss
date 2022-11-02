@@ -5,6 +5,10 @@
     gap: 2rem 0.5rem;
     margin-top: 2rem;
 
+    @include screenDesktop {
+        grid-template-columns: repeat(26, 1fr);
+    }
+
     &__key {
         width: 100%;
         border: 0.2rem solid $color-black;
@@ -16,6 +20,7 @@
         cursor: pointer;
         text-transform: uppercase;
         transition: all 0.3s ease-in-out;
+        aspect-ratio: 1/1;
 
         &--correct {
             background-color: $color-green;

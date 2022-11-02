@@ -15,11 +15,28 @@
         text-align: center;
 
         &_header {
+            position: relative;
             width: 100%;
             display: flex;
             align-items: center;
             font-weight: 700;
             justify-content: space-evenly;
+
+            .button {
+                position: absolute;
+                width: initial;
+                padding: 0.5rem 1rem;
+                top: 0;
+                left: 0;
+
+                @include screenTablet {
+                    padding: 1rem 1.5rem;
+                }
+
+                @include screenDesktop {
+                    padding: 1rem 2rem;
+                }
+            }
         }
     }
 }
