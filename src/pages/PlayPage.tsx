@@ -1,4 +1,4 @@
-import React, {ReactElement, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import Figure from '../components/Figure';
@@ -9,9 +9,9 @@ import {sendScoreData} from '../service/game';
 import {fetchPuzzleAction, resetGameAction, setLostAction, setWinAction} from '../store/actions/gameActions';
 import {StoreState} from '../store/reducers/rootReducer';
 
-const PlayPage = (): ReactElement => {
-    const {player} = useSelector((state: StoreState) => state.playerReducer);
-    const {puzzle, correctLetters, incorrectLetters, win, lost, time} = useSelector((state: StoreState) => state.gameReducer);
+const PlayPage: React.FC = () => {
+    const {playerName} = useSelector((state: StoreState) => state.gameReducer);
+    const {puzzle, correctLetters, incorrectLetters, isWin, isLost, time} = useSelector((state: StoreState) => state.gameReducer);
     const {content} = puzzle;
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -37,7 +37,7 @@ const PlayPage = (): ReactElement => {
             quoteId: puzzle._id,
             length: puzzle.length,
             uniqueCharacters: uniqueCharCount,
-            userName: player,
+            userName: playerName,
             errors: incorrectLetters.length,
             duration: time,
         });
@@ -53,8 +53,8 @@ const PlayPage = (): ReactElement => {
                     </button>{' '}
                     <h1>HANGMAN</h1>
                 </header>
-                {lost && <span>GAME OVER!</span>}
-                {win && (
+                {isLost && <span>GAME OVER!</span>}
+                {isWin && (
                     <>
                         <span>CONGRATULATIONS!</span>
                         <button className="button" onClick={handleShowHighscore}>

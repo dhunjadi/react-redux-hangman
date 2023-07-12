@@ -1,10 +1,10 @@
-import React, {ReactElement, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchPuzzleAction, resetGameAction} from '../store/actions/gameActions';
 import {StoreState} from '../store/reducers/rootReducer';
 import {v4 as uuidv4} from 'uuid';
 
-const Puzzle = (): ReactElement => {
+const Puzzle: React.FC = () => {
     const {puzzle, correctLetters} = useSelector((state: StoreState) => state.gameReducer);
     const {content} = puzzle;
     const dispatch = useDispatch();

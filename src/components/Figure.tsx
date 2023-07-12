@@ -1,8 +1,8 @@
-import React, {ReactElement} from 'react';
+import React from 'react';
 import {useSelector} from 'react-redux';
 import {StoreState} from '../store/reducers/rootReducer';
 
-const Figure = (): ReactElement => {
+const Figure: React.FC = () => {
     const {incorrectLetters} = useSelector((state: StoreState) => state.gameReducer);
 
     return (

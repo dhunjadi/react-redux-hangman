@@ -1,14 +1,15 @@
 import {ForkEffect, put, call, takeLatest} from 'redux-saga/effects';
-import {fetchHighscores, fetchWordToGuess, IHighscore, IPuzzle} from '../../service/game';
+import {fetchHighscores, fetchWordToGuess } from '../../service/game';
 import {FETCH_PUZZLE, setHighscoresAction, setPuzzleAction, FETCH_HIGHSCORES} from '../actions/gameActions';
+import { Highscore, Puzzle } from '../../types';
 
 export function* fetchWordToGuessSaga(): Generator<void> | void {
-    const response: IPuzzle = yield call(fetchWordToGuess);
+    const response: Puzzle = yield call(fetchWordToGuess);
     yield put(setPuzzleAction(response));
 }
 
 export function* fetchHighscoresSaga(): Generator<void> | void {
-    const response: IHighscore[] = yield call(fetchHighscores);
+    const response: Highscore[] = yield call(fetchHighscores);
     yield put(setHighscoresAction(response));
 }
 

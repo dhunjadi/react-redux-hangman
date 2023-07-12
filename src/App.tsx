@@ -1,11 +1,11 @@
-import React, {ReactElement} from 'react';
+import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import HighscoresPage from './pages/HighscoresPage';
 import NamePage from './pages/NamePage';
 import PlayPage from './pages/PlayPage';
-import './styles/styles.css';
+import './styles/styles.scss';
 
-const App = (): ReactElement => {
+const App: React.FC = () => {
     return (
         <div className="App">
             <Router>

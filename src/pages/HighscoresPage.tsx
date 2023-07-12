@@ -1,10 +1,10 @@
-import React, {ReactElement, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {fetcgHighscoresAction, resetGameAction} from '../store/actions/gameActions';
 import {StoreState} from '../store/reducers/rootReducer';
 
-const HighscoresPage = (): ReactElement => {
+const HighscoresPage: React.FC = () => {
     const {highscores} = useSelector((state: StoreState) => state.gameReducer);
     const dispatch = useDispatch();
     const navigate = useNavigate();

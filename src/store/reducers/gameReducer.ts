@@ -1,38 +1,37 @@
 import {AnyAction} from 'redux';
-import {IHighscore, IPuzzle} from '../../service/game';
 import {
     ADD_CORRECT_LETTER,
     ADD_INCORRECT_LETTER,
     RESET_GAME,
     SET_HIGHSCORES,
     SET_LOST,
+    SET_PLAYER_NAME,
     SET_PUZZLE,
     SET_TIME,
     SET_WIN,
 } from '../actions/gameActions';
+import { GameReducerState } from './types';
 
-export interface IGameReducerState {
-    puzzle: IPuzzle;
-    correctLetters: string[];
-    incorrectLetters: string[];
-    win: boolean;
-    lost: boolean;
-    time: number;
-    highscores: IHighscore[];
-}
 
-const initialState = {
+
+const initialState: GameReducerState = {
+    playerName: '',
     puzzle: {_id: '', content: '', author: '', tags: [], authorSlug: '', length: 0, dateAdded: '', dateModified: ''},
     correctLetters: [],
     incorrectLetters: [],
-    win: false,
-    lost: false,
+    isWin: false,
+    isLost: false,
     time: 0,
     highscores: [],
 };
 
-export const gameReducer = (state: IGameReducerState = initialState, action: AnyAction): IGameReducerState => {
+export const gameReducer = (state: GameReducerState = initialState, action: AnyAction): GameReducerState => {
     switch (action.type) {
+        case SET_PLAYER_NAME:
+            return {
+                ...state,
+                playerName: action.name,
+            };
         case SET_PUZZLE:
             return {
                 ...state,
@@ -51,12 +50,12 @@ export const gameReducer = (state: IGameReducerState = initialState, action: Any
         case SET_WIN:
             return {
                 ...state,
-                win: true,
+                isWin: true,
             };
         case SET_LOST:
             return {
                 ...state,
-                lost: true,
+                isLost: true,
             };
         case SET_TIME:
             return {

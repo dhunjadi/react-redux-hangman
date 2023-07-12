@@ -1,4 +1,4 @@
-import {IHighscore, IPuzzle, IScoreData} from '../../../service/game';
+import { Puzzle, ScoreData, Highscore } from '../../../types';
 import {
     ADD_CORRECT_LETTER,
     ADD_INCORRECT_LETTER,
@@ -11,54 +11,60 @@ import {
     SET_TIME,
     SET_WIN,
     FETCH_HIGHSCORES,
+    SET_PLAYER_NAME,
 } from '../gameActions';
 
-export interface IFetchPuzzleAction {
+export interface SetPlayerActionAction {
+    type: typeof SET_PLAYER_NAME;
+    name: string;
+}
+
+export interface FetchPuzzleAction {
     type: typeof FETCH_PUZZLE;
 }
 
-export interface ISetPuzzleAction {
+export interface SetPuzzleAction {
     type: typeof SET_PUZZLE;
-    puzzle: IPuzzle;
+    puzzle: Puzzle;
 }
 
-export interface IAddCorrectLetterAction {
+export interface AddCorrectLetterAction {
     type: typeof ADD_CORRECT_LETTER;
     letter: string;
 }
 
-export interface IAddIncorrectLetterAction {
+export interface AddIncorrectLetterAction {
     type: typeof ADD_INCORRECT_LETTER;
     letter: string;
 }
 
-export interface IResetGameAction {
+export interface ResetGameAction {
     type: typeof RESET_GAME;
 }
 
-export interface ISetWinAction {
+export interface SetWinAction {
     type: typeof SET_WIN;
 }
 
-export interface ISetLostAction {
+export interface SetLostAction {
     type: typeof SET_LOST;
 }
 
-export interface ISetTimeAction {
+export interface SetTimeAction {
     type: typeof SET_TIME;
     time: number;
 }
 
-export interface ISendScoreDataAction {
+export interface SendScoreDataAction {
     type: typeof SEND_SCORE_DATA;
-    scoreData: IScoreData;
+    scoreData: ScoreData;
 }
 
-export interface IFetchHighscoreAction {
+export interface FetchHighscoreAction {
     type: typeof FETCH_HIGHSCORES;
 }
 
-export interface ISetHighscoreAction {
+export interface SetHighscoreAction {
     type: typeof SET_HIGHSCORES;
-    highscores: IHighscore[];
+    highscores: Highscore[];
 }

@@ -1,16 +1,16 @@
-import React, {ReactElement, useState} from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {setPlayerNameAction} from '../store/actions/playerActions';
 import {StoreState} from '../store/reducers/rootReducer';
+import { setPlayerNameAction } from '../store/actions/gameActions';
 
-const NamePage = (): ReactElement => {
-    const {player} = useSelector((state: StoreState) => state.playerReducer);
+const NamePage: React.FC = () => {
+    const {playerName} = useSelector((state: StoreState) => state.gameReducer);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [name, setName] = useState<string>(player || '');
+    const [name, setName] = useState<string>(playerName || '');
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();

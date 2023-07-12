@@ -1,39 +1,11 @@
 /* eslint-disable no-console */
 import axios from 'axios';
+import {Puzzle, ScoreData, Highscore} from '../types';
+import {FETCH_HIGHSCORES_URL, FETCH_WORD_URL, SEND_SCORE_URL} from '../constants';
 
-export interface IPuzzle {
-    _id: string;
-    content: string;
-    author: string;
-    tags: string[];
-    authorSlug: string;
-    length: number;
-    dateAdded: string;
-    dateModified: string;
-}
-
-export interface IScoreData {
-    quoteId: string;
-    length: number;
-    uniqueCharacters: number;
-    userName: string;
-    errors: number;
-    duration: number;
-}
-
-export interface IHighscore {
-    id: number;
-    quoteId: string;
-    length: number;
-    userName: string;
-    uniqueCharacters: number;
-    errors: number;
-    duration: number;
-}
-
-export const fetchWordToGuess = (): Promise<IPuzzle> => {
+export const fetchWordToGuess = (): Promise<Puzzle> => {
     return axios
-        .get('http://api.quotable.io/random')
+        .get(FETCH_WORD_URL)
         .then((response) => {
             return response.data;
         })
@@ -42,10 +14,10 @@ export const fetchWordToGuess = (): Promise<IPuzzle> => {
         });
 };
 
-export const sendScoreData = ({quoteId, length, uniqueCharacters, userName, errors, duration}: IScoreData): Promise<IScoreData> => {
+export const sendScoreData = ({quoteId, length, uniqueCharacters, userName, errors, duration}: ScoreData): Promise<ScoreData> => {
     return axios
         .post(
-            'https://my-json-server.typicode.com/Serapion-ZG/hangman-ts/highscores',
+            SEND_SCORE_URL,
             {quoteId, length, uniqueCharacters, userName, errors, duration},
             {
                 headers: {
@@ -61,9 +33,9 @@ export const sendScoreData = ({quoteId, length, uniqueCharacters, userName, erro
         });
 };
 
-export const fetchHighscores = (): Promise<IHighscore[]> => {
+export const fetchHighscores = (): Promise<Highscore[]> => {
     return axios
-        .get('https://my-json-server.typicode.com/Serapion-ZG/hangman-ts/highscores')
+        .get(FETCH_HIGHSCORES_URL)
         .then((response) => {
             return response.data;
         })
