@@ -1,4 +1,4 @@
-import { Puzzle, ScoreData, Highscore } from '../../types';
+import {Puzzle, ScoreData, Highscore} from '../../types';
 import {
     AddCorrectLetterAction,
     AddIncorrectLetterAction,
@@ -12,6 +12,7 @@ import {
     SetWinAction,
     FetchHighscoreAction,
     SetPlayerActionAction,
+    SetIsLoadingAction,
 } from './types/gameActionsTypes';
 
 export const SET_PLAYER_NAME = 'SET_PLAYER_NAME';
@@ -26,7 +27,9 @@ export const SET_TIME = 'SET_TIME';
 export const SEND_SCORE_DATA = 'SEND_SCORE_DATA';
 export const FETCH_HIGHSCORES = 'FETCH_HIGHSCORES';
 export const SET_HIGHSCORES = 'SET_HIGHSCORES';
-
+export const SET_IS_LOADING_TRUE = 'SET_IS_LOADING_TRUE';
+export const SET_IS_LOADING_FALSE = 'SET_IS_LOADING_FALSE';
+export const SET_IS_LOADING = 'SET_IS_LOADING';
 
 export const setPlayerNameAction = (name: string): SetPlayerActionAction => ({
     type: SET_PLAYER_NAME,
@@ -81,4 +84,9 @@ export const fetcgHighscoresAction = (): FetchHighscoreAction => ({
 export const setHighscoresAction = (highscores: Highscore[]): SetHighscoreAction => ({
     type: SET_HIGHSCORES,
     highscores,
+});
+
+export const setIsLoadingAction = (isLoading: boolean): SetIsLoadingAction => ({
+    type: SET_IS_LOADING,
+    isLoading,
 });

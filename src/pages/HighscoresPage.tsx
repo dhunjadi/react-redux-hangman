@@ -5,7 +5,7 @@ import {fetcgHighscoresAction, resetGameAction} from '../store/actions/gameActio
 import {StoreState} from '../store/reducers/rootReducer';
 
 const HighscoresPage: React.FC = () => {
-    const {highscores} = useSelector((state: StoreState) => state.gameReducer);
+    const {highscores, isLoading} = useSelector((state: StoreState) => state.gameReducer);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -24,34 +24,39 @@ const HighscoresPage: React.FC = () => {
 
     return (
         <div className="p-highscores">
-            <div className="p-highscores__descriptions">
-                <span> #</span>
-                <span> Player</span>
-                <span> Score</span>
-            </div>
-
-            <div className="p-highscores__players">
-                {highscores
-                    .map((player) => {
-                        return {...player, score: getScore(player.length, player.uniqueCharacters, player.errors, player.duration)};
-                    })
-                    .sort((a, b) => {
-                        return b.score - a.score;
-                    })
-                    .map((player, i) => {
-                        return (
-                            <div key={player.id} className="p-highscores__players_player">
-                                <span> {i + 1}.</span>
-                                <span> {player.userName}</span>
-                                <span> {player.score?.toFixed(2)}</span>
-                            </div>
-                        );
-                    })}
-            </div>
-
-            <button className="button" onClick={handlePlayAgain}>
-                Play again
-            </button>
+            {isLoading ? (
+                'Loading...'
+            ) : (
+                <>
+                    <div className="p-highscores__descriptions">
+                        <span> #</span>
+                        <span> Player</span>
+                        <span> Score</span>
+                    </div>
+                    <div className="p-highscores__players">
+                        {highscores
+                            .map((player) => {
+                                return {...player, score: getScore(player.length, player.uniqueCharacters, player.errors, player.duration)};
+                            })
+                            .sort((a, b) => {
+                                return b.score - a.score;
+                            })
+                            .map((player, i) => {
+                                return (
+                                    <div key={player.id} className="p-highscores__players_player">
+                                        <span> {i + 1}.</span>
+                                        <span> {player.userName}</span>
+                                        <span> {player.score?.toFixed(2)}</span>
+                                    </div>
+                                );
+                            })}
+                    </div>
+                    <button className="button" onClick={handlePlayAgain}>
+                        Play again
+                    </button>
+                    „
+                </>
+            )}
         </div>
     );
 };

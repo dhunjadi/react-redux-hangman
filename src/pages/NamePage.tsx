@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {StoreState} from '../store/reducers/rootReducer';
-import { setPlayerNameAction } from '../store/actions/gameActions';
+import {resetGameAction, setPlayerNameAction} from '../store/actions/gameActions';
 
 const NamePage: React.FC = () => {
-    const {playerName} = useSelector((state: StoreState) => state.gameReducer);
+    const {playerName, puzzle} = useSelector((state: StoreState) => state.gameReducer);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -14,6 +14,7 @@ const NamePage: React.FC = () => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
+        if (puzzle.content) dispatch(resetGameAction());
         if (name) {
             dispatch(setPlayerNameAction(name));
             navigate('/play');

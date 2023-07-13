@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchPuzzleAction, resetGameAction} from '../store/actions/gameActions';
+import {fetchPuzzleAction} from '../store/actions/gameActions';
 import {StoreState} from '../store/reducers/rootReducer';
 import {v4 as uuidv4} from 'uuid';
 
@@ -10,9 +10,8 @@ const Puzzle: React.FC = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(resetGameAction());
-        dispatch(fetchPuzzleAction());
-    }, [dispatch]);
+        if (!puzzle.content) dispatch(fetchPuzzleAction());
+    }, [dispatch, puzzle.content]);
 
     const regex = /[a-z]/gi;
 

@@ -10,7 +10,7 @@ import {fetchPuzzleAction, resetGameAction, setLostAction, setWinAction} from '.
 import {StoreState} from '../store/reducers/rootReducer';
 
 const PlayPage: React.FC = () => {
-    const {playerName} = useSelector((state: StoreState) => state.gameReducer);
+    const {playerName, isLoading} = useSelector((state: StoreState) => state.gameReducer);
     const {puzzle, correctLetters, incorrectLetters, isWin, isLost, time} = useSelector((state: StoreState) => state.gameReducer);
     const {content} = puzzle;
     const dispatch = useDispatch();
@@ -47,29 +47,35 @@ const PlayPage: React.FC = () => {
     return (
         <div className="p-playPage">
             <div className="p-playPage__content">
-                <header className="p-playPage__content_header">
-                    <button className="button" onClick={() => navigate('/')}>
-                        &larr;
-                    </button>{' '}
-                    <h1>HANGMAN</h1>
-                </header>
-                {isLost && <span>GAME OVER!</span>}
-                {isWin && (
+                {isLoading ? (
+                    'Loading...'
+                ) : (
                     <>
-                        <span>CONGRATULATIONS!</span>
-                        <button className="button" onClick={handleShowHighscore}>
-                            Show highscore table
+                        <header className="p-playPage__content_header">
+                            <button className="button" onClick={() => navigate('/')}>
+                                &larr;
+                            </button>{' '}
+                            <h1>HANGMAN</h1>
+                        </header>
+                        {isLost && <span>GAME OVER!</span>}
+                        {isWin && (
+                            <>
+                                <span>CONGRATULATIONS!</span>
+                                <button className="button" onClick={handleShowHighscore}>
+                                    Show highscore table
+                                </button>
+                            </>
+                        )}
+                        <Figure />
+                        WRONG: {incorrectLetters.length}/6
+                        <Puzzle />
+                        <Keyboard />
+                        <button className="button" onClick={handleReset}>
+                            RESET
                         </button>
+                        <Timer />
                     </>
                 )}
-                <Figure />
-                WRONG: {incorrectLetters.length}/6
-                <Puzzle />
-                <Keyboard />
-                <button className="button" onClick={handleReset}>
-                    RESET
-                </button>
-                <Timer />
             </div>
         </div>
     );

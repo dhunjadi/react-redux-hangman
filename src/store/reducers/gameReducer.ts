@@ -4,15 +4,14 @@ import {
     ADD_INCORRECT_LETTER,
     RESET_GAME,
     SET_HIGHSCORES,
+    SET_IS_LOADING,
     SET_LOST,
     SET_PLAYER_NAME,
     SET_PUZZLE,
     SET_TIME,
     SET_WIN,
 } from '../actions/gameActions';
-import { GameReducerState } from './types';
-
-
+import {GameReducerState} from './types';
 
 const initialState: GameReducerState = {
     playerName: '',
@@ -23,6 +22,7 @@ const initialState: GameReducerState = {
     isLost: false,
     time: 0,
     highscores: [],
+    isLoading: false,
 };
 
 export const gameReducer = (state: GameReducerState = initialState, action: AnyAction): GameReducerState => {
@@ -66,6 +66,11 @@ export const gameReducer = (state: GameReducerState = initialState, action: AnyA
             return {
                 ...state,
                 highscores: action.highscores,
+            };
+        case SET_IS_LOADING:
+            return {
+                ...state,
+                isLoading: action.isLoading,
             };
         case RESET_GAME:
             return initialState;

@@ -1,4 +1,4 @@
-import { Highscore, Puzzle } from "../../types";
+import {Highscore, Puzzle} from '../../types';
 
 export interface GameReducerState {
     playerName: string;
@@ -9,4 +9,5 @@ export interface GameReducerState {
     isLost: boolean;
     time: number;
     highscores: Highscore[];
+    isLoading: boolean;
 }

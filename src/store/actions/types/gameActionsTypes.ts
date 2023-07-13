@@ -1,4 +1,4 @@
-import { Puzzle, ScoreData, Highscore } from '../../../types';
+import {Puzzle, ScoreData, Highscore} from '../../../types';
 import {
     ADD_CORRECT_LETTER,
     ADD_INCORRECT_LETTER,
@@ -12,6 +12,7 @@ import {
     SET_WIN,
     FETCH_HIGHSCORES,
     SET_PLAYER_NAME,
+    SET_IS_LOADING,
 } from '../gameActions';
 
 export interface SetPlayerActionAction {
@@ -67,4 +68,9 @@ export interface FetchHighscoreAction {
 export interface SetHighscoreAction {
     type: typeof SET_HIGHSCORES;
     highscores: Highscore[];
+}
+
+export interface SetIsLoadingAction {
+    type: typeof SET_IS_LOADING;
+    isLoading: boolean;
 }
