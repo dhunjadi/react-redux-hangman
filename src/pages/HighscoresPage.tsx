@@ -28,33 +28,35 @@ const HighscoresPage: React.FC = () => {
                 'Loading...'
             ) : (
                 <>
-                    <div className="p-highscores__descriptions">
-                        <span> #</span>
-                        <span> Player</span>
-                        <span> Score</span>
-                    </div>
-                    <div className="p-highscores__players">
+                    <table className="mt-2">
+                        <tr>
+                            <th>#</th>
+                            <th>Player</th>
+                            <th>Score</th>
+                        </tr>
                         {highscores
-                            .map((player) => {
-                                return {...player, score: getScore(player.length, player.uniqueCharacters, player.errors, player.duration)};
+                            .map((highscore) => {
+                                return {
+                                    ...highscore,
+                                    score: getScore(highscore.length, highscore.uniqueCharacters, highscore.errors, highscore.duration),
+                                };
                             })
                             .sort((a, b) => {
                                 return b.score - a.score;
                             })
                             .map((player, i) => {
                                 return (
-                                    <div key={player.id} className="p-highscores__players_player">
-                                        <span> {i + 1}.</span>
-                                        <span> {player.userName}</span>
-                                        <span> {player.score?.toFixed(2)}</span>
-                                    </div>
+                                    <tr key={player.id}>
+                                        <td>{i + 1}</td>
+                                        <td>{player.userName}</td>
+                                        <td>{player.score.toFixed(2)}</td>
+                                    </tr>
                                 );
                             })}
-                    </div>
-                    <button className="button" onClick={handlePlayAgain}>
+                    </table>
+                    <button className="button w-50 mt-2" onClick={handlePlayAgain}>
                         Play again
                     </button>
-                    „
                 </>
             )}
         </div>

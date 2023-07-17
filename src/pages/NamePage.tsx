@@ -33,7 +33,7 @@ const NamePage: React.FC = () => {
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your name..."
                 />
-                <button className={`button ${isDisabled && 'is-disabled'}`} type="submit" disabled={isDisabled}>
+                <button className={`button ${isDisabled && 'is-disabled'} w-100`} type="submit" disabled={isDisabled}>
                     Continue
                 </button>
             </form>

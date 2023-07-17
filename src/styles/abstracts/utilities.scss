@@ -1,0 +1,19 @@
+.w-50 {
+    width: 50%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+@for $i from 10 through 100 {
+    .w-#{$i} {
+        width: $i * 1%;
+    }
+}
+
+@for $i from 1 through 10 {
+    .mt-#{$i} {
+        margin-top: $i * 1rem;
+    }
+}

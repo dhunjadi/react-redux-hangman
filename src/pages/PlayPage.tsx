@@ -70,7 +70,7 @@ const PlayPage: React.FC = () => {
                         WRONG: {incorrectLetters.length}/6
                         <Puzzle />
                         <Keyboard />
-                        <button className="button" onClick={handleReset}>
+                        <button className="button w-30" onClick={handleReset}>
                             RESET
                         </button>
                         <Timer />

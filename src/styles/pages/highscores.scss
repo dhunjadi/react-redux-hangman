@@ -1,23 +1,12 @@
 .p-highscores {
     @include pageLayout;
 
-    &__descriptions {
-        margin: 2rem 0;
+    table {
         width: 100%;
-        display: flex;
-        justify-content: space-between;
     }
 
-    &__players {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 2rem;
-
-        &_player {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-        }
+    td {
+        width: 33%;
+        text-align: center;
     }
 }
