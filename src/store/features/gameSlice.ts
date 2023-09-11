@@ -1,6 +1,7 @@
-import {createSelector, createSlice} from '@reduxjs/toolkit';
+import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {GameSliceState} from './types';
 import {RootState} from './rootReducer';
+import {Highscore, Puzzle} from '../../types';
 
 const initialState: GameSliceState = {
     playerName: '',
@@ -18,19 +19,19 @@ export const gameSlice = createSlice({
     name: 'game',
     initialState: initialState,
     reducers: {
-        setPlayerName: (state, action) => {
+        setPlayerName: (state, action: PayloadAction<string>) => {
             state.playerName = action.payload;
         },
         fetchPuzzle: (state) => {
             state.isLoading = true;
         },
-        setPuzzle: (state, action) => {
+        setPuzzle: (state, action: PayloadAction<Puzzle>) => {
             state.puzzle = action.payload;
         },
-        addCorrectLetter: (state, action) => {
+        addCorrectLetter: (state, action: PayloadAction<string>) => {
             state.correctLetters.push(action.payload);
         },
-        addIncorrectLetter: (state, action) => {
+        addIncorrectLetter: (state, action: PayloadAction<string>) => {
             state.incorrectLetters.push(action.payload);
         },
         setWin: (state) => {
@@ -39,16 +40,16 @@ export const gameSlice = createSlice({
         setLost: (state) => {
             state.isLost = true;
         },
-        setGameTime: (state, action) => {
+        setGameTime: (state, action: PayloadAction<number>) => {
             state.time = action.payload;
         },
         fetchHighscores: (state) => {
             state.isLoading = true;
         },
-        setHighScores: (state, action) => {
+        setHighScores: (state, action: PayloadAction<Highscore[]>) => {
             state.highscores = action.payload;
         },
-        setIsLoading: (state, action) => {
+        setIsLoading: (state, action: PayloadAction<boolean>) => {
             state.isLoading = action.payload;
         },
         resetGame: () => {
