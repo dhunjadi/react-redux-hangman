@@ -6,30 +6,30 @@ import Keyboard from '../components/Keyboard';
 import Puzzle from '../components/Puzzle';
 import Timer from '../components/Timer';
 import {sendScoreData} from '../service/game';
-import {fetchPuzzleAction, resetGameAction, setLostAction, setWinAction} from '../store/actions/gameActions';
-import {StoreState} from '../store/reducers/rootReducer';
+import {fetchPuzzle, resetGame, selectGameSlice, setLost, setWin} from '../store/features/gameSlice';
 
 const PlayPage: React.FC = () => {
-    const {playerName, isLoading} = useSelector((state: StoreState) => state.gameReducer);
-    const {puzzle, correctLetters, incorrectLetters, isWin, isLost, time} = useSelector((state: StoreState) => state.gameReducer);
+    const {playerName, puzzle, correctLetters, incorrectLetters, isWin, isLost, time} = useSelector(selectGameSlice);
     const {content} = puzzle;
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const isLoading = false;
 
     const regex = /[a-z]/gi;
     const uniqueCharCount = new Set(content.replaceAll(' ', '')).size;
 
     useEffect(() => {
         if (content.match(regex)?.every((char) => correctLetters.includes(char.toLocaleLowerCase()))) {
-            dispatch(setWinAction());
+            dispatch(setWin());
         }
 
-        if (incorrectLetters.length === 6) dispatch(setLostAction());
+        if (incorrectLetters.length === 6) dispatch(setLost());
     }, [dispatch, puzzle, correctLetters, incorrectLetters]);
 
     const handleReset = (): void => {
-        dispatch(resetGameAction());
-        dispatch(fetchPuzzleAction());
+        dispatch(resetGame());
+        dispatch(fetchPuzzle());
     };
 
     const handleShowHighscore = (): void => {
@@ -55,7 +55,7 @@ const PlayPage: React.FC = () => {
                             <button className="button" onClick={() => navigate('/')}>
                                 &larr;
                             </button>{' '}
-                            <h1>HANGMAN</h1>
+                            <h1>HANGMAN, {playerName}</h1>
                         </header>
                         {isLost && <span>GAME OVER!</span>}
                         {isWin && (

@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {setTimeAction} from '../store/actions/gameActions';
-import {StoreState} from '../store/reducers/rootReducer';
+import {selectGameSlice, setGameTime} from '../store/features/gameSlice';
 
 const Timer: React.FC = () => {
-    const {puzzle, incorrectLetters, isWin, isLost} = useSelector((state: StoreState) => state.gameReducer);
+    const {puzzle, incorrectLetters, isWin, isLost} = useSelector(selectGameSlice);
     const dispatch = useDispatch();
 
     const [time, setTime] = useState<number>(0);
@@ -29,7 +28,7 @@ const Timer: React.FC = () => {
 
         if (isWin || isLost) {
             setIsTimerOn(false);
-            dispatch(setTimeAction(time));
+            dispatch(setGameTime(time));
         }
 
         if (puzzle.length === 0) setTime(0);

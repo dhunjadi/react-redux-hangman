@@ -1,9 +1,9 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {StoreState} from '../store/reducers/rootReducer';
+import {selectGameSlice} from '../store/features/gameSlice';
 
 const Figure: React.FC = () => {
-    const {incorrectLetters} = useSelector((state: StoreState) => state.gameReducer);
+    const {incorrectLetters} = useSelector(selectGameSlice);
 
     return (
         <svg height="250" width="200" className="c-figure">

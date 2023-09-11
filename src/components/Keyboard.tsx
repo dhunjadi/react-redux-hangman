@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addCorrectLetterAction, addIncorrectLetterAction} from '../store/actions/gameActions';
-import {StoreState} from '../store/reducers/rootReducer';
 import {v4 as uuidv4} from 'uuid';
 import {KEY_ARRAY} from '../constants';
+import {addCorrectLetter, addIncorrectLetter, selectGameSlice} from '../store/features/gameSlice';
 
 const Keyboard: React.FC = () => {
-    const {puzzle, correctLetters, incorrectLetters, isWin, isLost} = useSelector((state: StoreState) => state.gameReducer);
+    const {puzzle, correctLetters, incorrectLetters, isWin, isLost} = useSelector(selectGameSlice);
     const {content} = puzzle;
     const dispatch = useDispatch();
 
@@ -15,11 +14,10 @@ const Keyboard: React.FC = () => {
             if (!KEY_ARRAY.includes(e.key)) return;
             if (isWin || isLost) return;
 
-            if (content.includes(e.key.toLowerCase()) && !correctLetters.includes(e.key))
-                dispatch(addCorrectLetterAction(e.key.toLowerCase()));
+            if (content.includes(e.key.toLowerCase()) && !correctLetters.includes(e.key)) dispatch(addCorrectLetter(e.key.toLowerCase()));
 
             if (!content.includes(e.key.toLowerCase()) && !incorrectLetters.includes(e.key))
-                dispatch(addIncorrectLetterAction(e.key.toLowerCase()));
+                dispatch(addIncorrectLetter(e.key.toLowerCase()));
         };
 
         window.addEventListener('keydown', handleKeydown);
@@ -29,7 +27,7 @@ const Keyboard: React.FC = () => {
 
     const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
         const {value} = e.currentTarget;
-        content.includes(value) ? dispatch(addCorrectLetterAction(value)) : dispatch(addIncorrectLetterAction(value));
+        content.includes(value) ? dispatch(addCorrectLetter(value)) : dispatch(addIncorrectLetter(value));
     };
 
     const isDisabled = (letter: string): boolean => {

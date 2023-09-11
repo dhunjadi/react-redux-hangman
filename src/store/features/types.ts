@@ -1,6 +1,6 @@
 import {Highscore, Puzzle} from '../../types';
 
-export interface GameReducerState {
+export interface GameSliceState {
     playerName: string;
     puzzle: Puzzle;
     correctLetters: string[];

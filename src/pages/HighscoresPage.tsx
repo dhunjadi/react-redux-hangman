@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {fetcgHighscoresAction, resetGameAction} from '../store/actions/gameActions';
-import {StoreState} from '../store/reducers/rootReducer';
+import {resetGame, fetchHighscores, selectGameSlice} from '../store/features/gameSlice';
 
 const HighscoresPage: React.FC = () => {
-    const {highscores, isLoading} = useSelector((state: StoreState) => state.gameReducer);
+    const {highscores, isLoading} = useSelector(selectGameSlice);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -14,11 +13,11 @@ const HighscoresPage: React.FC = () => {
     };
 
     useEffect(() => {
-        dispatch(fetcgHighscoresAction());
+        dispatch(fetchHighscores());
     }, [dispatch]);
 
     const handlePlayAgain = (): void => {
-        dispatch(resetGameAction());
+        dispatch(resetGame());
         navigate('/play');
     };
 

@@ -1,16 +1,15 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchPuzzleAction} from '../store/actions/gameActions';
-import {StoreState} from '../store/reducers/rootReducer';
 import {v4 as uuidv4} from 'uuid';
+import {fetchPuzzle, selectGameSlice} from '../store/features/gameSlice';
 
 const Puzzle: React.FC = () => {
-    const {puzzle, correctLetters} = useSelector((state: StoreState) => state.gameReducer);
+    const {puzzle, correctLetters} = useSelector(selectGameSlice);
     const {content} = puzzle;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!puzzle.content) dispatch(fetchPuzzleAction());
+        if (!puzzle.content) dispatch(fetchPuzzle());
     }, [dispatch, puzzle.content]);
 
     const regex = /[a-z]/gi;
