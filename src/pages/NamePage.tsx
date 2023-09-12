@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {resetGame, selectGameSlice, setPlayerName} from '../store/features/gameSlice';
+import {resetGame, setPlayerName} from '../store/features/gameSlice';
+import {RootState, useAppSelector} from '../store/store';
 
 const NamePage: React.FC = () => {
-    const {playerName, puzzle} = useSelector(selectGameSlice);
+    const {playerName, puzzle} = useAppSelector((state: RootState) => state.game);
     const [name, setName] = useState<string>(playerName || '');
 
     const dispatch = useDispatch();

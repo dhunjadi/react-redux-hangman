@@ -1,17 +1,18 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import Figure from '../components/Figure';
 import Keyboard from '../components/Keyboard';
 import Puzzle from '../components/Puzzle';
 import Timer from '../components/Timer';
 import {sendScoreData} from '../service/game';
-import {fetchPuzzle, resetGame, selectGameSlice, setLost, setWin} from '../store/features/gameSlice';
+import {resetGame, setLost, setWin} from '../store/features/gameSlice';
+import {RootState, useAppDispatch, useAppSelector} from '../store/store';
+import {fetchPuzzle} from '../store/thunks/gameThunks';
 
 const PlayPage: React.FC = () => {
-    const {playerName, puzzle, correctLetters, incorrectLetters, isWin, isLost, time} = useSelector(selectGameSlice);
+    const {playerName, puzzle, correctLetters, incorrectLetters, isWin, isLost, time} = useAppSelector((state: RootState) => state.game);
     const {content} = puzzle;
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const isLoading = false;

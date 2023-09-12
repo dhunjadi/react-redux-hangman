@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {v4 as uuidv4} from 'uuid';
 import {KEY_ARRAY} from '../constants';
-import {addCorrectLetter, addIncorrectLetter, selectGameSlice} from '../store/features/gameSlice';
+import {addCorrectLetter, addIncorrectLetter} from '../store/features/gameSlice';
+import {RootState, useAppSelector} from '../store/store';
 
 const Keyboard: React.FC = () => {
-    const {puzzle, correctLetters, incorrectLetters, isWin, isLost} = useSelector(selectGameSlice);
+    const {puzzle, correctLetters, incorrectLetters, isWin, isLost} = useAppSelector((state: RootState) => state.game);
     const {content} = puzzle;
     const dispatch = useDispatch();
 

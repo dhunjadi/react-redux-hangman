@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
 import {v4 as uuidv4} from 'uuid';
-import {fetchPuzzle, selectGameSlice} from '../store/features/gameSlice';
+import {RootState, useAppDispatch, useAppSelector} from '../store/store';
+import {fetchPuzzle} from '../store/thunks/gameThunks';
 
 const Puzzle: React.FC = () => {
-    const {puzzle, correctLetters} = useSelector(selectGameSlice);
+    const {puzzle, correctLetters} = useAppSelector((state: RootState) => state.game);
     const {content} = puzzle;
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (!puzzle.content) dispatch(fetchPuzzle());

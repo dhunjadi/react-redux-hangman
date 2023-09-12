@@ -3,20 +3,19 @@ import axios from 'axios';
 import {Puzzle, ScoreData, Highscore} from '../types';
 import {FETCH_HIGHSCORES_URL, FETCH_WORD_URL, SEND_SCORE_URL} from '../constants';
 
-export const fetchWordToGuess = (): Promise<Puzzle> => {
-    return axios
-        .get(FETCH_WORD_URL)
-        .then((response) => {
-            return response.data;
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+export const fetchQuote = async (): Promise<Puzzle> => {
+    try {
+        const response = await axios.get(FETCH_WORD_URL);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 };
 
-export const sendScoreData = ({quoteId, length, uniqueCharacters, userName, errors, duration}: ScoreData): Promise<ScoreData> => {
-    return axios
-        .post(
+export const sendScoreData = async ({quoteId, length, uniqueCharacters, userName, errors, duration}: ScoreData): Promise<ScoreData> => {
+    try {
+        const response = await axios.post(
             SEND_SCORE_URL,
             {quoteId, length, uniqueCharacters, userName, errors, duration},
             {
@@ -24,22 +23,20 @@ export const sendScoreData = ({quoteId, length, uniqueCharacters, userName, erro
                     'Content-Type': 'application/json',
                 },
             }
-        )
-        .then((response) => {
-            return response.data;
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        );
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 };
 
-export const fetchHighscores = (): Promise<Highscore[]> => {
-    return axios
-        .get(FETCH_HIGHSCORES_URL)
-        .then((response) => {
-            return response.data;
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+export const fetchHighscores = async (): Promise<Highscore[]> => {
+    try {
+        const response = await axios.get(FETCH_HIGHSCORES_URL);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 };
