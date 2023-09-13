@@ -1,40 +1,47 @@
 .c-keyboard {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(13, 1fr);
-    gap: 2rem 0.5rem;
-    margin-top: 2rem;
 
-    @include screenDesktop {
-        grid-template-columns: repeat(26, 1fr);
-    }
+    &__keys {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        gap: 2rem 0.5rem;
+        margin-top: 2rem;
 
-    &__key {
-        width: 100%;
-        border: 0.2rem solid $color-black;
-        background-color: white;
-        border-radius: 0.4rem;
-        outline: none;
-        font-size: 1.6rem;
-        font-weight: 700;
-        cursor: pointer;
-        text-transform: uppercase;
-        transition: all 0.3s ease-in-out;
-        aspect-ratio: 1/1;
-
-        &--correct {
-            background-color: $color-green;
-            pointer-events: none;
+        @include screenTablet {
+            grid-template-columns: repeat(13, 1fr);
         }
 
-        &--incorrect {
-            background-color: $color-red;
-            pointer-events: none;
+        @include screenDesktop {
+            grid-template-columns: repeat(26, 1fr);
         }
 
-        &:hover {
-            background-color: $color-black;
-            color: $color-white;
+        &_key {
+            width: 100%;
+            border: 0.2rem solid $color-black;
+            background-color: white;
+            border-radius: 0.4rem;
+            outline: none;
+            font-size: 1.6rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+            aspect-ratio: 1/1;
+
+            &--correct {
+                background-color: $color-green;
+                pointer-events: none;
+            }
+
+            &--incorrect {
+                background-color: $color-red;
+                pointer-events: none;
+            }
+
+            &:hover {
+                background-color: $color-black;
+                color: $color-white;
+            }
         }
     }
 }

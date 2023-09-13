@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import HighscoresPage from './pages/HighscoresPage';
-import NamePage from './pages/NamePage';
+import NamePage from './pages/HomePage';
 import PlayPage from './pages/PlayPage';
 import './styles/styles.scss';
 

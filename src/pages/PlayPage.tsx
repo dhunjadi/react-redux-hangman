@@ -45,31 +45,31 @@ const PlayPage: React.FC = () => {
 
     return (
         <div className="p-playPage">
-            <div className="p-playPage__content">
-                <header className="p-playPage__content_header">
-                    <button className="button" onClick={() => navigate('/')}>
-                        &larr;
+            <header className="p-playPage__header">
+                <h1>HANGMAN</h1>
+            </header>
+            {isLost && <span>GAME OVER!</span>}
+            {isWin && (
+                <>
+                    <span>CONGRATULATIONS!</span>
+                    <button className="p-playPage__goToHighscores" onClick={handleShowHighscore}>
+                        Show highscore table
                     </button>
-                    <h1>HANGMAN, {playerName}</h1>
-                </header>
-                {isLost && <span>GAME OVER!</span>}
-                {isWin && (
-                    <>
-                        <span>CONGRATULATIONS!</span>
-                        <button className="button" onClick={handleShowHighscore}>
-                            Show highscore table
-                        </button>
-                    </>
-                )}
-                <Figure />
-                WRONG: {incorrectLetters.length}/6
-                <Puzzle />
-                <Keyboard />
-                <button className="button w-30" onClick={handleReset}>
-                    RESET
+                </>
+            )}
+            <Figure />
+            WRONG: {incorrectLetters.length}/6
+            <Puzzle />
+            <Keyboard />
+            <div className="p-playPage__buttons">
+                <button className="p-playPage__buttons_backToHome" onClick={() => navigate('/')}>
+                    Back to Homepage
                 </button>
-                <Timer />
+                <button className="p-playPage__buttons_reset" onClick={handleReset}>
+                    Reset
+                </button>
             </div>
+            <Timer />
         </div>
     );
 };

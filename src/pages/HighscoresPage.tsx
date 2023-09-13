@@ -59,7 +59,7 @@ const HighscoresPage: React.FC = () => {
                                 })}
                         </tbody>
                     </table>
-                    <button className="button w-50 mt-2" onClick={handlePlayAgain}>
+                    <button className="p-highscores__button" onClick={handlePlayAgain}>
                         Play again
                     </button>
                 </>
