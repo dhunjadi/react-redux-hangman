@@ -15,8 +15,6 @@ const PlayPage: React.FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const isLoading = false;
-
     const regex = /[a-z]/gi;
     const uniqueCharCount = new Set(content.replaceAll(' ', '')).size;
 
@@ -48,35 +46,29 @@ const PlayPage: React.FC = () => {
     return (
         <div className="p-playPage">
             <div className="p-playPage__content">
-                {isLoading ? (
-                    'Loading...'
-                ) : (
+                <header className="p-playPage__content_header">
+                    <button className="button" onClick={() => navigate('/')}>
+                        &larr;
+                    </button>
+                    <h1>HANGMAN, {playerName}</h1>
+                </header>
+                {isLost && <span>GAME OVER!</span>}
+                {isWin && (
                     <>
-                        <header className="p-playPage__content_header">
-                            <button className="button" onClick={() => navigate('/')}>
-                                &larr;
-                            </button>{' '}
-                            <h1>HANGMAN, {playerName}</h1>
-                        </header>
-                        {isLost && <span>GAME OVER!</span>}
-                        {isWin && (
-                            <>
-                                <span>CONGRATULATIONS!</span>
-                                <button className="button" onClick={handleShowHighscore}>
-                                    Show highscore table
-                                </button>
-                            </>
-                        )}
-                        <Figure />
-                        WRONG: {incorrectLetters.length}/6
-                        <Puzzle />
-                        <Keyboard />
-                        <button className="button w-30" onClick={handleReset}>
-                            RESET
+                        <span>CONGRATULATIONS!</span>
+                        <button className="button" onClick={handleShowHighscore}>
+                            Show highscore table
                         </button>
-                        <Timer />
                     </>
                 )}
+                <Figure />
+                WRONG: {incorrectLetters.length}/6
+                <Puzzle />
+                <Keyboard />
+                <button className="button w-30" onClick={handleReset}>
+                    RESET
+                </button>
+                <Timer />
             </div>
         </div>
     );

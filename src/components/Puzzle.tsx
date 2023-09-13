@@ -2,9 +2,10 @@ import React, {useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import {RootState, useAppDispatch, useAppSelector} from '../store/store';
 import {fetchPuzzle} from '../store/thunks/gameThunks';
+import BeatLoader from 'react-spinners/BeatLoader';
 
 const Puzzle: React.FC = () => {
-    const {puzzle, correctLetters} = useAppSelector((state: RootState) => state.game);
+    const {puzzle, correctLetters, isLoading} = useAppSelector((state: RootState) => state.game);
     const {content} = puzzle;
     const dispatch = useAppDispatch();
 
@@ -13,6 +14,10 @@ const Puzzle: React.FC = () => {
     }, [dispatch, puzzle.content]);
 
     const regex = /[a-z]/gi;
+
+    if (isLoading) {
+        return <BeatLoader size={10} />;
+    }
 
     return (
         <div className="c-puzzle">

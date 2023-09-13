@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {resetGame} from '../store/features/gameSlice';
 import {RootState, useAppDispatch, useAppSelector} from '../store/store';
 import {fetchHighscoreTable} from '../store/thunks/gameThunks';
+import BeatLoader from 'react-spinners/BeatLoader';
 
 const HighscoresPage: React.FC = () => {
     const {highscores, isLoading} = useAppSelector((state: RootState) => state.game);
@@ -25,7 +26,7 @@ const HighscoresPage: React.FC = () => {
     return (
         <div className="p-highscores">
             {isLoading ? (
-                'Loading...'
+                <BeatLoader size={10} cssOverride={{margin: 50}} />
             ) : (
                 <>
                     <table className="mt-2">

@@ -12,7 +12,7 @@ const initialState: GameSliceState = {
     isLost: false,
     time: 0,
     highscores: [],
-    isLoading: false,
+    isLoading: true,
 };
 
 export const gameSlice = createSlice({
@@ -77,7 +77,6 @@ export const gameSlice = createSlice({
 
 export const {
     setPlayerName,
-
     setPuzzle,
     addCorrectLetter,
     addIncorrectLetter,
